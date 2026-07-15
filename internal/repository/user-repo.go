@@ -15,7 +15,6 @@ func NewUserRepo(db *sql.DB) *UserRepo {
 	return &UserRepo{db: db}
 }
 
-// rpc UserExists(UserExistsRequest) returns (UserExistsResponse);
 func (ur *UserRepo) CreateUser(username, email string) (*models.User, error) {
 	query := `INSERT INTO users (username, email) VALUES ($1, $2) RETURNING id, username, email, created_at`
 	var user models.User
